@@ -5,50 +5,50 @@ import Image from 'next/image'
 
 const hotQuestions = [
     {
-        _id: 1,
+        _id: '1',
         title: 'Best practices for data fetching in a Next.js application with Server-Side Rendering (SSR)?'
     },
     {
-        _id: 2,
+        _id: '2',
         title: 'Can I get the course for free?'
     },
     {
-        _id: 3,
+        _id: '3',
         title: 'Async/Await Function Not Handling Errors Properly'
     },
     {
-        _id: 4,
+        _id: '4',
         title: 'Redux Toolkit Not Updating State as Expected'
     },
     {
-        _id: 5,
+        _id: '5',
         title: 'How do I use express as a custom server in NextJS?'
     }
 ]
 
 const popularTags = [
     {
-        _id: 1,
+        _id: '1',
         name: 'JavaScript',
         totalQuestions: 5,
     },
     {
-        _id: 2,
+        _id: '2',
         name: 'TypeScript',
         totalQuestions: 5,
     },
     {
-        _id: 3,
+        _id: '3',
         name: 'Next.js',
         totalQuestions: 10,
     },
     {
-        _id: 4,
+        _id: '4',
         name: 'React.js',
         totalQuestions: 10,
     },
     {
-        _id: 5,
+        _id: '5',
         name: 'MongoDB',
         totalQuestions: 5,
     },
@@ -63,7 +63,7 @@ function RightSidebar() {
                     <Link href={`/questions/${question._id}`} key={question._id}
                         className='flex cursor-pointer items-center justify-between gap-7'
                     >
-                        <p>{question.title}</p>
+                        <p className='body-medium text-dark500_light700'>{question.title}</p>
                         <Image 
                             src={'/assets/icons/chevron-right.svg'}
                             alt='Chevron Right'
