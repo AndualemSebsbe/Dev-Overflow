@@ -22,6 +22,7 @@ import Image from 'next/image';
 import { Button } from '../ui/button';
 import { createQuestion } from '@/lib/actions/question.action';
 import { useRouter, usePathname } from 'next/navigation';
+import { useTheme } from '@/context/ThemeProvider';
 
 const type:any = 'create'
 
@@ -29,6 +30,7 @@ interface QuestionProps {
   mongoUserId: string
 }
 function Question({mongoUserId}: QuestionProps) {
+  const {mode} = useTheme();
   const editorRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState(false)
   const pathname = usePathname();
@@ -153,7 +155,9 @@ function Question({mongoUserId}: QuestionProps) {
                     'undo redo | ' +
                     'codesample | bold italic forecolor | alignleft aligncenter |' +
                     'alignright alignjustify | bullist numlist',
-                    content_style: 'body { font-family:Inter; font-size:16px }'
+                    content_style: 'body { font-family:Inter; font-size:16px }',
+                    skin: mode === 'dark' ? 'oxide-dark' : 'oxide',
+                    content_css: mode === 'dark' ? 'dark' : 'light'
                   }}
                 />
               </FormControl>

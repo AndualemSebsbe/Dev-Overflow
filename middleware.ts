@@ -7,6 +7,7 @@ export default authMiddleware({
         '/question/:id',
         '/tags',
         '/tags/:id',
+        '/profile',
         '/profile/:id',
         '/community',
         '/jobs'
@@ -14,7 +15,8 @@ export default authMiddleware({
 
     ignoredRoutes : [
         '/api/webhook',
-        '/api/chatgpt'
+        '/api/chatgpt',
+        '/profile'
     ]
 });
  
