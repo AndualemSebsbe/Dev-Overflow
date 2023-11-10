@@ -6,6 +6,7 @@ import Metric from '../shared/Metric'
 
 interface QuestionCardProps {
     _id: string
+    clerkId: string | null | undefined
     title: string
     tags: 
         {_id: string, name: string}[]
@@ -21,6 +22,7 @@ interface QuestionCardProps {
 }
 function QuestionCard({
     _id,
+    clerkId,
     title,
     tags,
     author,
