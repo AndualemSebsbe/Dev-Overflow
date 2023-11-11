@@ -15,8 +15,8 @@ interface UserCardProps {
   }
 }
 const UserCard = async({user}: UserCardProps) => {
-  const interactedTags = await getTopInteractedTags({userId: user._id});
-
+  // const interactedTags = await getTopInteractedTags({userId: user._id});
+  // console.log(interactedTags);
   return (
     <Link href={`/profile/${user.clerkId}`} className='shadow-light100_darknone max-xs:min-w-full xs:w-[260px]'>
       <article className='background-light900_dark200 light-border flex w-full flex-col items-center justify-center rounded-2xl border p-8'>
@@ -29,7 +29,10 @@ const UserCard = async({user}: UserCardProps) => {
         />
         
         <div className='mt-5'>
-          {interactedTags.length > 0 ? (
+          <Badge className='text-light400_light500 background-light800_dark300'>
+            {user.name}
+          </Badge>
+          {/* {interactedTags.length > 0 ? (
             <div className='flex items-center gap-2'>
               {interactedTags.map((tag) => (
                 <RenderTag 
@@ -44,7 +47,7 @@ const UserCard = async({user}: UserCardProps) => {
               No tags yet
             </Badge>
           )
-          }
+          } */}
         </div>
       </article>
     </Link>
