@@ -2,7 +2,7 @@
 
 import Question from "@/database/question.model";
 import { connectToDatabase } from "../mongoose";
-import { SearchParams } from "./shared.types";
+import { SearchParams } from "./shared";
 import User from "@/database/user.model";
 import Answer from "@/database/answer.model";
 import Tag from "@/database/tag.model";
