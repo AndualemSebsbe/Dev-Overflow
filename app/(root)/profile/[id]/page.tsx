@@ -19,7 +19,7 @@ const Page = async ({ params, searchParams}: URLProps) => {
     return <p>No user ID provided.</p>;
   }
   const userInfo = await getUserInfo({ userId: params.id})
-
+  const validClerkId = clerkId || "";
   return (
     <>
       <div className="flex flex-col-reverse items-start justify-between sm:flex-row">
@@ -96,7 +96,7 @@ const Page = async ({ params, searchParams}: URLProps) => {
             <QuestionTab 
               searchParams={searchParams}
               userId={userInfo.user._id}
-              clerkId={clerkId}
+              clerkId={validClerkId}
             />
           </TabsContent>
           <TabsContent value="answers" className="flex w-full flex-col gap-6">
