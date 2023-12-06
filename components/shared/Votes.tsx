@@ -33,7 +33,7 @@ const Votes = ({
 }: Props) => {
   const pathname = usePathname();
   const router = useRouter();
-
+  
   const handleSave = async () => {
     await toggleSaveQuestion({
       userId: JSON.parse(userId),

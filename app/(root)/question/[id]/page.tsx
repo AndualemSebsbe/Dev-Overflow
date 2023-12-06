@@ -14,7 +14,7 @@ import React from 'react'
 
 const Page = async ({ params, searchParams }: any) => {
   const { userId: clerkId } = auth();
-
+  
   let mongoUser;
 
   if(clerkId) {
@@ -22,7 +22,6 @@ const Page = async ({ params, searchParams }: any) => {
   }
 
   const result = await getQuestionById({ questionId: params.id });
-
   return (
     <>
       <div className="flex-start w-full flex-col">
