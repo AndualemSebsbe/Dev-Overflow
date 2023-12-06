@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import React from 'react'
 import Link from 'next/link'
-import { getTopInteractedTags } from '@/lib/actions/tag.action'
-import RenderTag from '../shared/RenderTag'
+// import { getTopInteractedTags } from '@/lib/actions/tag.action'
+// import RenderTag from '../shared/RenderTag'
 import { Badge } from '../ui/badge'
 
 interface UserCardProps {

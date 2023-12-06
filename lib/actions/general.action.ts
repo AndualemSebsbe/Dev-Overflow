@@ -6,7 +6,7 @@ import { SearchParams } from "./shared";
 import User from "@/database/user.model";
 import Answer from "@/database/answer.model";
 import Tag from "@/database/tag.model";
-import { model } from "mongoose";
+// import { model } from "mongoose";
 
 const SearchableTypes = ["question", "answer", "user", "tag"];
 
