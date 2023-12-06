@@ -15,7 +15,7 @@ import AnswersTab from '@/components/shared/AnswersTab'
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Profilew | Dev Overflow",
+  title: "Profile | Dev Overflow",
 };
 
 const Page = async ({ params, searchParams}: URLProps) => {

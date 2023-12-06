@@ -92,16 +92,24 @@ export async function upvoteAnswer(params: AnswerVoteParams) {
     const { answerId, userId, hasupVoted, hasdownVoted, path } = params;
 
     let updateQuery = {};
+    let updateAuthorReputationQuery = {};
+    let updateUserReputationQuery = {};
 
     if(hasupVoted) {
       updateQuery = { $pull: { upvotes: userId }}
+      updateAuthorReputationQuery = { $inc: { reputation: -10 } };
+      updateUserReputationQuery = { $inc: { reputation: -2 } };
     } else if (hasdownVoted) {
       updateQuery = { 
         $pull: { downvotes: userId },
         $push: { upvotes: userId }
-      }
+      };
+      updateAuthorReputationQuery = { $inc: { reputation: 20 } };
+      updateUserReputationQuery = { $inc: { reputation: 4 } };
     } else {
-      updateQuery = { $addToSet: { upvotes: userId }}
+      updateQuery = { $addToSet: { upvotes: userId }};
+      updateAuthorReputationQuery = { $inc: { reputation: 10 } };
+      updateUserReputationQuery = { $inc: { reputation: 2 } };
     }
 
     const answer = await Answer.findByIdAndUpdate(answerId, updateQuery, { new: true });
@@ -111,13 +119,9 @@ export async function upvoteAnswer(params: AnswerVoteParams) {
     }
 
     // Increment author's reputation
-    await User.findByIdAndUpdate(userId, { 
-      $inc: { reputation: hasupVoted ? -2 : 2 }
-    })
+    await User.findByIdAndUpdate(userId, updateUserReputationQuery);
 
-    await User.findByIdAndUpdate(answer.author, { 
-      $inc: { reputation: hasupVoted ? -10 : 10 }
-    })
+    await User.findByIdAndUpdate(answer.author, updateAuthorReputationQuery);
 
 
     revalidatePath(path);
@@ -134,16 +138,24 @@ export async function downvoteAnswer(params: AnswerVoteParams) {
     const { answerId, userId, hasupVoted, hasdownVoted, path } = params;
 
     let updateQuery = {};
+    let updateAuthorReputationQuery = {};
+    let updateUserReputationQuery = {};
 
     if(hasdownVoted) {
-      updateQuery = { $pull: { downvote: userId }}
+      updateQuery = { $pull: { downvotes: userId }};
+      updateAuthorReputationQuery = { $inc: { reputation: 10 } };
+      updateUserReputationQuery = { $inc: { reputation: 2 } };
     } else if (hasupVoted) {
       updateQuery = { 
         $pull: { upvotes: userId },
         $push: { downvotes: userId }
-      }
+      };
+      updateAuthorReputationQuery = { $inc: { reputation: -20 } };
+      updateUserReputationQuery = { $inc: { reputation: -4 } };
     } else {
-      updateQuery = { $addToSet: { downvotes: userId }}
+      updateQuery = { $addToSet: { downvotes: userId }};
+      updateAuthorReputationQuery = { $inc: { reputation: -10 } };
+      updateUserReputationQuery = { $inc: { reputation: -2 } };
     }
 
     const answer = await Answer.findByIdAndUpdate(answerId, updateQuery, { new: true });
@@ -153,13 +165,9 @@ export async function downvoteAnswer(params: AnswerVoteParams) {
     }
 
     // Increment author's reputation
-    await User.findByIdAndUpdate(userId, { 
-      $inc: { reputation: hasdownVoted ? -2 : 2 }
-    })
+    await User.findByIdAndUpdate(userId, updateUserReputationQuery)
 
-    await User.findByIdAndUpdate(answer.author, { 
-      $inc: { reputation: hasdownVoted ? -10 : 10 }
-    })
+    await User.findByIdAndUpdate(answer.author, updateAuthorReputationQuery);
 
     revalidatePath(path);
   } catch (error) {

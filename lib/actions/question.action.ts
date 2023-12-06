@@ -183,7 +183,7 @@ export async function downvoteQuestion(params: QuestionVoteParams) {
 		let updateUserReputationQuery = {};
 
     if(hasdownVoted) {
-      updateQuery = { $pull: { downvote: userId }}
+      updateQuery = { $pull: { downvotes: userId }}
       updateAuthorReputationQuery = { $inc: { reputation: 10 } };
       updateUserReputationQuery = { $inc: { reputation: 1 } };
     } else if (hasupVoted) {
