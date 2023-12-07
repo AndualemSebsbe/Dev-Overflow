@@ -3,7 +3,11 @@ import Question from "@/components/forms/Question";
 import { getUserById } from "@/lib/actions/user.action";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs";
+import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Ask Question | Dev Overflow",
+};
 const Page = async () => {
   const { userId } = auth();
 
