@@ -12,7 +12,7 @@ export interface CreateAnswerParams {
 export interface GetAnswersParams {
   questionId: string;
   sortBy?: string;
-  page?: number;
+  page: number;
   pageSize?: number;
 }
 
@@ -48,7 +48,7 @@ export interface ViewQuestionParams {
 
 export interface JobFilterParams {
   query: string;
-  page: string;
+  page: number;
 }
 
 export interface GetQuestionsParams {
@@ -157,3 +157,4 @@ export interface GetUserStatsParams {
 export interface DeleteUserParams {
   clerkId: string;
 }
+
